@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Calendar.View.EventListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calendar.View"
+        mc:Ignorable="d"
+        Title="EventListView" Height="450" Width="800">
+    <!-- Вид для отображения списка событий -->
+    <ListView ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <StackPanel>
+                    <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding StartDate}"/>
+                </StackPanel>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+    <!-- Вид для отображения деталей выбранного события -->
+    <StackPanel DataContext="{Binding SelectedEvent}">
+        <TextBlock Text="Детали события:" FontWeight="Bold"/>
+        <TextBlock Text="{Binding Title}"/>
+        <TextBlock Text="{Binding StartDate}"/>
+        <TextBlock Text="{Binding EndDate}"/>
+        <TextBlock Text="{Binding Description}"/>
+    </StackPanel>
+    </UserControl>
