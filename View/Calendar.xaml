@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calendar"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" WindowStyle="None" WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -24,7 +24,7 @@
                             <ControlTemplate TargetType="CalendarDayButton">
                                 <Grid>
                                     <Border x:Name="HighlightBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
-                                        <TextBlock x:Name="DayNumber" FontWeight="Bold" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <TextBlock x:Name="DayNumber" Text="{TemplateBinding Content}" FontWeight="Bold" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                     </Border>
                                 </Grid>
                                 <ControlTemplate.Triggers>
@@ -34,6 +34,12 @@
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter TargetName="HighlightBorder" Property="Background" Value="LightGray"/>
                                     </Trigger>
+                                    <DataTrigger Binding="{Binding Date.DayOfWeek}" Value="Saturday">
+                                        <Setter TargetName="HighlightBorder" Property="Background" Value="Red"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Date.DayOfWeek}" Value="Sunday">
+                                        <Setter TargetName="HighlightBorder" Property="Background" Value="Red"/>
+                                    </DataTrigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Setter.Value>
